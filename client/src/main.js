@@ -1,11 +1,29 @@
-import Vue from 'vue'
-import App from './App.vue'
-import ElementUI from 'element-ui'
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store'
+import router from './router'
 
-Vue.config.productionTip = false
-Vue.use(ElementUI)
+import 'normalize.css/normalize.css'
+import './plugins/element.js'
+import '@/styles/index.scss'
+
+Vue.config.productionTip = false;
 
 new Vue({
   el: '#app',
-  render: h => h(App)
+  store,
+  router,
+  render: h => h(App),
+  methods: {
+    checkLogin() {
+      if (store.state.authToken) {
+        router.push('/home');
+      } else {
+        router.push('/login');
+      }
+    }
+  },
+  created() {
+    this.checkLogin();
+  }
 })
