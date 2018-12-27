@@ -1,0 +1,18 @@
+POST http://localhost:3000/api/v1/user/login
+Accept: */*
+Cache-Control: no-cache
+
+{email:15307110273, password:123456}
+
+<> 2018-12-27T042419.500.txt
+
+###
+
+POST http://localhost:3000/api/v1/user/login
+Accept: */*
+Cache-Control: no-cache
+
+{email:15307110273, password:123456}
+
+###
+

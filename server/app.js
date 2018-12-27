@@ -26,5 +26,7 @@ app.use(bodyparser({
 // routes
 app.use(index.routes(), index.allowedMethods())
 
+// listen
+app.listen(3000);
 
 module.exports = app

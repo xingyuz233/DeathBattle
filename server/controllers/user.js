@@ -15,9 +15,9 @@ class UserController {
     static async create(ctx) {
         const user = ctx.request.body;
 
-        if (user.username && user.password) {
+        if (user.email && user.password) {
             // 查询用户名是否重复
-            const existUser = await userModel.findUserByName(user.username)
+            const existUser = await userModel.findUserByEmail(user.email)
 
             if (existUser) {
                 // 反馈存在用户名
@@ -32,11 +32,11 @@ class UserController {
 
                 // 创建用户
                 await userModel.create(user);
-                const newUser = await userModel.findUserByName(user.username)
+                const newUser = await userModel.findUserByEmail(user.email)
 
                 // 签发token
                 const userToken = {
-                    username: newUser.username,
+                    email: newUser.email,
                     id: newUser.id
                 }
 
@@ -71,7 +71,7 @@ class UserController {
 
                 const user = {
                     id: payload.id,
-                    username: payload.username,
+                    email: payload.email,
                 }
 
                 ctx.response.status = 200;
@@ -112,14 +112,14 @@ class UserController {
     static async login(ctx) {
         const data = ctx.request.body
         // 查询用户
-        const user = await userModel.findUserByName(data.username)
+        const user = await userModel.findUserByEmail(data.email)
         // 判断用户是否存在
         if (user) {
             // 判断前端传递的用户密码是否与数据库密码一致
             if (bcrypt.compareSync(data.password, user.password)) {
                 // 用户token
                 const userToken = {
-                    username: user.username,
+                    email: user.email,
                     id: user.id
                 }
                 // 签发token
@@ -128,7 +128,7 @@ class UserController {
                 ctx.response.status = 200;
                 ctx.body = statusCode.SUCCESS_200('登录成功', {
                     id: user.id,
-                    username: user.username,
+                    email: user.email,
                     token: token
                 })
             } else {

@@ -1,5 +1,5 @@
 const config = {
-    database: 'deathbattle',
+    database: 'DeathBattle',
     username: 'remote',
     password: 'tmzzxy1997',
     host: '120.79.227.127',

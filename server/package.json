@@ -10,10 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-jwt": "^3.5.1",
     "koa-router": "^7.4.0",
-    "moment": "^2.23.0"
+    "moment": "^2.23.0",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
   }
 }
